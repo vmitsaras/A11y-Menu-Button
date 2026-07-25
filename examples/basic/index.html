@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Basic A11y Menu Button example</title>
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../../dist/styles.css" />
+    <style>
+      :root {
+        color-scheme: light dark;
+        font-family: system-ui, sans-serif;
+      }
+
+      body {
+        margin: 0;
+        padding: clamp(1rem, 5vw, 4rem);
+      }
+
+      main {
+        max-inline-size: 36rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Basic menu button</h1>
+      <p>
+        This disclosure keeps native links and buttons in the document’s
+        normal interaction model after initialization.
+      </p>
+
+      <div class="a11y-menu-button" data-a11y-menu-button>
+        <button
+          class="a11y-menu-button__trigger"
+          type="button"
+          aria-controls="basic-account-actions"
+          aria-expanded="false">
+          Account actions
+        </button>
+        <div
+          class="a11y-menu-button__panel"
+          id="basic-account-actions"
+          hidden>
+          <a
+            class="a11y-menu-button__item"
+            href="#profile"
+            data-menu-close>
+            Profile
+          </a>
+          <a
+            class="a11y-menu-button__item"
+            href="#settings"
+            data-menu-close>
+            Settings
+          </a>
+          <button
+            class="a11y-menu-button__item"
+            type="button"
+            data-menu-close>
+            Sign out
+          </button>
+        </div>
+      </div>
+
+      <p id="profile">Profile destination</p>
+      <p id="settings">Settings destination</p>
+    </main>
+
+    <script type="module">
+      import { createMenuButton } from '../../dist/core.js';
+
+      const root = document.querySelector('[data-a11y-menu-button]');
+      if (root instanceof HTMLElement) {
+        createMenuButton(root);
+      }
+    </script>
+  </body>
+</html>

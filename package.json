@@ -1,0 +1,106 @@
+{
+  "name": "a11y-menu-button",
+  "version": "1.0.0",
+  "description": "A TypeScript-first disclosure-style menu button for native links, buttons, and form controls.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./core": {
+      "types": "./dist/core.d.ts",
+      "import": "./dist/core.js"
+    },
+    "./addons/async-menu-state": {
+      "types": "./dist/addons/async-menu-state.d.ts",
+      "import": "./dist/addons/async-menu-state.js"
+    },
+    "./addons/command-menu": {
+      "types": "./dist/addons/command-menu.d.ts",
+      "import": "./dist/addons/command-menu.js"
+    },
+    "./addons/filterable-menu": {
+      "types": "./dist/addons/filterable-menu.d.ts",
+      "import": "./dist/addons/filterable-menu.js"
+    },
+    "./addons/menu-feedback": {
+      "types": "./dist/addons/menu-feedback.d.ts",
+      "import": "./dist/addons/menu-feedback.js"
+    },
+    "./addons/menu-hints": {
+      "types": "./dist/addons/menu-hints.d.ts",
+      "import": "./dist/addons/menu-hints.js"
+    },
+    "./addons/recent-actions": {
+      "types": "./dist/addons/recent-actions.d.ts",
+      "import": "./dist/addons/recent-actions.js"
+    },
+    "./addons/rich-menu-items": {
+      "types": "./dist/addons/rich-menu-items.d.ts",
+      "import": "./dist/addons/rich-menu-items.js"
+    },
+    "./docs": {
+      "types": "./dist/docs.d.ts",
+      "import": "./dist/docs.js"
+    },
+    "./styles.css": "./dist/styles.css",
+    "./styles/addons/command-menu.css": "./dist/styles/addons/command-menu.css",
+    "./styles/themes/a11y-menu-button-soft.css": "./dist/styles/themes/a11y-menu-button-soft.css",
+    "./styles/themes/a11y-menu-button-compact.css": "./dist/styles/themes/a11y-menu-button-compact.css",
+    "./styles/themes/a11y-menu-button-elevated.css": "./dist/styles/themes/a11y-menu-button-elevated.css",
+    "./styles/themes/a11y-menu-button-command.css": "./dist/styles/themes/a11y-menu-button-command.css",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "scripts": {
+    "clean": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",
+    "copy:assets": "node scripts/copy-assets.mjs",
+    "build:dist": "npm run clean && tsdown && npm run copy:assets",
+    "pages:generate": "node scripts/build-pages.mjs",
+    "pages:build": "npm run build:dist && npm run pages:generate",
+    "build": "npm run pages:build",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "pack:check": "npm pack --dry-run --cache ./.npm-cache",
+    "prepack": "npm run build:dist",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "npm run test && npm run typecheck && npm run build:dist && changeset publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vmitsaras/A11y-Menu-Button.git"
+  },
+  "homepage": "https://vmitsaras.github.io/A11y-Menu-Button/",
+  "bugs": {
+    "url": "https://github.com/vmitsaras/A11y-Menu-Button/issues"
+  },
+  "author": "Vasileios Mitsaras",
+  "license": "MIT",
+  "keywords": [
+    "accessibility",
+    "a11y",
+    "menu-button",
+    "disclosure",
+    "typescript"
+  ],
+  "devDependencies": {
+    "@changesets/cli": "^2.31.1",
+    "happy-dom": "^20.11.0",
+    "tsdown": "^0.22.9",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.10"
+  }
+}

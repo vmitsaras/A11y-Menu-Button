@@ -1,0 +1,672 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Accessible Menu Button Demo &amp; Docs | A11y Menu Button</title>
+    <meta
+      name="description"
+      content="Build disclosure-style menus with native controls, keyboard navigation, typeahead, lifecycle events, and optional TypeScript add-ons." />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="https://vmitsaras.github.io/A11y-Menu-Button/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="A11y Menu Button" />
+    <meta property="og:title" content="Accessible Menu Button Demo &amp; Docs | A11y Menu Button" />
+    <meta
+      property="og:description"
+      content="Build disclosure-style menus with native controls, keyboard navigation, typeahead, lifecycle events, and optional TypeScript add-ons." />
+    <meta property="og:url" content="https://vmitsaras.github.io/A11y-Menu-Button/" />
+    <meta
+      property="og:image"
+      content="https://vmitsaras.github.io/A11y-Menu-Button/social-preview.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="640" />
+    <meta
+      property="og:image:alt"
+      content="A11y Menu Button social preview with an open menu showing Profile, Settings, and Sign out." />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Accessible Menu Button Demo &amp; Docs | A11y Menu Button" />
+    <meta
+      name="twitter:description"
+      content="Build disclosure-style menus with native controls, keyboard navigation, typeahead, lifecycle events, and optional TypeScript add-ons." />
+    <meta
+      name="twitter:image"
+      content="https://vmitsaras.github.io/A11y-Menu-Button/social-preview.png" />
+    <meta
+      name="twitter:image:alt"
+      content="A11y Menu Button social preview with an open menu showing Profile, Settings, and Sign out." />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebPage",
+            "@id": "https://vmitsaras.github.io/A11y-Menu-Button/#webpage",
+            "url": "https://vmitsaras.github.io/A11y-Menu-Button/",
+            "name": "Accessible Menu Button Demo & Docs | A11y Menu Button",
+            "description": "Build disclosure-style menus with native controls, keyboard navigation, typeahead, lifecycle events, and optional TypeScript add-ons.",
+            "inLanguage": "en",
+            "image": "https://vmitsaras.github.io/A11y-Menu-Button/social-preview.png",
+            "mainEntity": {
+              "@id": "https://vmitsaras.github.io/A11y-Menu-Button/#software"
+            }
+          },
+          {
+            "@type": "SoftwareSourceCode",
+            "@id": "https://vmitsaras.github.io/A11y-Menu-Button/#software",
+            "name": "A11y Menu Button",
+            "alternateName": "a11y-menu-button",
+            "description": "A TypeScript-first disclosure-style menu button for native links, buttons, and form controls.",
+            "version": "0.1.0",
+            "codeRepository": "https://github.com/vmitsaras/A11y-Menu-Button",
+            "license": "https://github.com/vmitsaras/A11y-Menu-Button/blob/main/LICENSE",
+            "programmingLanguage": "TypeScript",
+            "runtimePlatform": "Browser",
+            "keywords": [
+              "accessibility",
+              "a11y",
+              "menu button",
+              "disclosure",
+              "TypeScript"
+            ],
+            "image": "https://vmitsaras.github.io/A11y-Menu-Button/social-preview.png",
+            "author": {
+              "@id": "https://vmitsaras.github.io/A11y-Menu-Button/#author"
+            }
+          },
+          {
+            "@type": "Person",
+            "@id": "https://vmitsaras.github.io/A11y-Menu-Button/#author",
+            "name": "Vasileios Mitsaras",
+            "url": "https://github.com/vmitsaras/",
+            "sameAs": [
+              "https://github.com/vmitsaras/",
+              "https://linkedin.com/in/vasilis-mitsaras"
+            ]
+          }
+        ]
+      }
+    </script>
+
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./dist/styles.css" />
+    <link rel="stylesheet" href="./styles/demo.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="demo-header">
+      <div class="demo-page">
+        <p class="demo-header__eyebrow">TypeScript · ESM · no runtime dependencies</p>
+        <h1>A11y Menu Button</h1>
+        <p class="demo-header__description">
+          Disclosure-style menu button behavior for account menus, action panels,
+          project switchers, settings, and other short collections of native controls.
+        </p>
+        <nav class="demo-header__links" aria-label="Page links">
+          <a class="demo-button demo-button--primary" href="#live-demo">Try the live demo</a>
+          <a class="demo-button" href="#usage">View usage</a>
+          <a class="demo-button" href="https://github.com/vmitsaras/A11y-Menu-Button">GitHub source</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content" class="demo-page">
+      <section class="demo-section demo-facts" aria-labelledby="facts-title">
+        <div class="demo-section__header">
+          <p class="demo-section__eyebrow">At a glance</p>
+          <h2 id="facts-title">Quick facts</h2>
+        </div>
+        <dl>
+          <div><dt>Package</dt><dd><code>a11y-menu-button</code></dd></div>
+          <div><dt>Runtime</dt><dd>Vanilla TypeScript / ESM</dd></div>
+          <div><dt>Dependencies</dt><dd>None</dd></div>
+          <div><dt>Semantics</dt><dd>Native interactive controls</dd></div>
+        </dl>
+      </section>
+
+      <section class="demo-section" id="live-demo" aria-labelledby="demo-title">
+        <div class="demo-section__header">
+          <p class="demo-section__eyebrow">Live demo</p>
+          <h2 id="demo-title">Try the interaction</h2>
+          <p>
+            Open any panel with pointer, touch, Enter, or Space. Arrow keys move
+            through controls, Home and End jump, printable characters use
+            typeahead, and Escape closes and restores focus.
+          </p>
+        </div>
+
+        <div class="demo-preview">
+          <div class="demo-grid" aria-label="Menu button examples">
+            <article class="demo-card">
+              <h3>Account links</h3>
+              <p>Native links with bottom-start placement.</p>
+              <div class="a11y-menu-button" data-a11y-menu-button data-placement="bottom-start">
+                <button class="a11y-menu-button__trigger" type="button" aria-expanded="false" aria-controls="demo-account-panel">Account</button>
+                <div class="a11y-menu-button__panel" id="demo-account-panel" hidden>
+                  <a class="a11y-menu-button__item" href="#usage" data-menu-close>Profile</a>
+                  <a class="a11y-menu-button__item" href="#accessibility" data-menu-close>Settings</a>
+                  <button class="a11y-menu-button__item" type="button" data-menu-close>Sign out</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="demo-card">
+              <h3>Edit actions</h3>
+              <p>A classic three-dot button for common editing commands.</p>
+              <div class="a11y-menu-button demo-edit-menu" data-a11y-menu-button data-placement="bottom-end">
+                <button class="a11y-menu-button__trigger demo-trigger--icon" type="button" aria-expanded="false" aria-controls="demo-edit-panel" aria-label="Open edit actions">
+                  <svg class="demo-trigger__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <circle cx="5" cy="12" r="2"></circle>
+                    <circle cx="12" cy="12" r="2"></circle>
+                    <circle cx="19" cy="12" r="2"></circle>
+                  </svg>
+                </button>
+                <div class="a11y-menu-button__panel" id="demo-edit-panel" hidden>
+                  <button class="a11y-menu-button__item" type="button" data-menu-close>Cut</button>
+                  <button class="a11y-menu-button__item" type="button" data-menu-close>Copy</button>
+                  <button class="a11y-menu-button__item" type="button" data-menu-close>Paste</button>
+                  <div class="a11y-menu-button__separator" role="separator"></div>
+                  <button class="a11y-menu-button__item" type="button" data-menu-close>Select all</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="demo-card">
+              <h3>Destructive actions</h3>
+              <p>Visual danger styling without changing button semantics.</p>
+              <div class="a11y-menu-button" data-a11y-menu-button data-placement="top-end">
+                <button class="a11y-menu-button__trigger" type="button" aria-expanded="false" aria-controls="demo-danger-panel">Database actions</button>
+                <div class="a11y-menu-button__panel" id="demo-danger-panel" hidden>
+                  <button class="a11y-menu-button__item" type="button" data-menu-close>Create backup</button>
+                  <div class="a11y-menu-button__separator" role="separator"></div>
+                  <button class="a11y-menu-button__item a11y-menu-button__item--danger" type="button" data-menu-close>Delete database</button>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="demo-section" id="install" aria-labelledby="install-title">
+        <div class="demo-section__header">
+          <p class="demo-section__eyebrow">Package setup</p>
+          <h2 id="install-title">Installation</h2>
+          <p>
+            The repository is prepared for npm, but this page does not claim the
+            package is published. After publication, install it with:
+          </p>
+        </div>
+        <pre class="demo-code"><code>npm install a11y-menu-button</code></pre>
+        <p>For local development, run <code>npm install</code> and <code>npm run build:dist</code>.</p>
+      </section>
+
+      <section class="demo-section" id="usage" aria-labelledby="usage-title">
+        <div class="demo-section__header">
+          <p class="demo-section__eyebrow">Native markup</p>
+          <h2 id="usage-title">Basic usage</h2>
+        </div>
+        <div class="demo-code-grid">
+          <div>
+            <h3>HTML</h3>
+            <pre class="demo-code"><code>&lt;div class="a11y-menu-button" data-a11y-menu-button&gt;
+  &lt;button
+    class="a11y-menu-button__trigger"
+    type="button"
+    aria-expanded="false"
+    aria-controls="account-actions"&gt;
+    Account actions
+  &lt;/button&gt;
+  &lt;div class="a11y-menu-button__panel" id="account-actions" hidden&gt;
+    &lt;a class="a11y-menu-button__item" href="#usage" data-menu-close&gt;
+      Profile
+    &lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+          <div>
+            <h3>TypeScript</h3>
+            <pre class="demo-code"><code>import { createMenuButton } from 'a11y-menu-button/core';
+import 'a11y-menu-button/styles.css';
+
+const root = document.querySelector(
+  '[data-a11y-menu-button]'
+);
+
+if (root instanceof HTMLElement) {
+  createMenuButton(root);
+}</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="demo-section" id="api" aria-labelledby="api-title">
+        <div class="demo-section__header">
+          <p class="demo-section__eyebrow">Configuration</p>
+          <h2 id="api-title">Options and API</h2>
+          <p>Explicit options override matching <code>data-*</code> values, which override defaults.</p>
+        </div>
+        <div class="demo-table-wrap" tabindex="0" role="region" aria-label="Menu button options table">
+          <table>
+            <thead><tr><th>Option</th><th>Type</th><th>Default</th><th>Purpose</th></tr></thead>
+            <tbody>
+              <tr><td><code>closeOnEscape</code></td><td>boolean</td><td>true</td><td>Close on Escape.</td></tr>
+              <tr><td><code>closeOnOutsidePointer</code></td><td>boolean</td><td>true</td><td>Close after a pointer action outside.</td></tr>
+              <tr><td><code>closeOnFocusOut</code></td><td>boolean</td><td>true</td><td>Close when focus leaves the component.</td></tr>
+              <tr><td><code>closeOnItemClick</code></td><td>boolean</td><td>false</td><td>Close for every item rather than only <code>data-menu-close</code>.</td></tr>
+              <tr><td><code>focusFirstOnOpen</code></td><td>boolean</td><td>false</td><td>Move focus to the first enabled control.</td></tr>
+              <tr><td><code>returnFocusOnEscape</code></td><td>boolean</td><td>true</td><td>Restore trigger focus after Escape.</td></tr>
+              <tr><td><code>matchTriggerWidth</code></td><td>boolean</td><td>false</td><td>Match the panel to the trigger width.</td></tr>
+              <tr><td><code>placement</code></td><td>string</td><td>bottom-end</td><td>Choose top/bottom and start/end alignment.</td></tr>
+              <tr><td><code>flipOnOverflow</code></td><td>boolean</td><td>true</td><td>Flip vertically when space is limited.</td></tr>
+              <tr><td><code>maxPanelHeight</code></td><td>boolean</td><td>true</td><td>Constrain the panel to available viewport space.</td></tr>
+              <tr><td><code>observeVisibility</code></td><td>boolean</td><td>true</td><td>Close or refresh when the root visibility changes.</td></tr>
+              <tr><td><code>typeahead</code></td><td>boolean</td><td>true</td><td>Find items by typing their label prefix.</td></tr>
+              <tr><td><code>typeaheadTimeout</code></td><td>number</td><td>700</td><td>Reset delay for the typeahead query.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="demo-definition-grid">
+          <div><h3>Factories</h3><p><code>createMenuButton()</code> initializes one root. <code>initMenuButtons()</code> initializes marked descendants.</p></div>
+          <div><h3>Instance methods</h3><p><code>open()</code>, <code>close()</code>, <code>toggle()</code>, <code>isOpen()</code>, <code>refresh()</code>, <code>updatePlacement()</code>, and <code>destroy()</code>.</p></div>
+          <div><h3>Lifecycle events</h3><p>Typed init, before/open, before/close, item-click, refresh, addon-state, and destroy events bubble from the root. Only the two <code>before-*</code> hooks are cancelable; events do not cross Shadow DOM boundaries.</p></div>
+          <div><h3>Filter announcements</h3><p><code>announceResultCount</code> is opt-in. Settled nonzero counts use one polite status after 250 ms; duplicate messages are skipped and the existing empty status owns zero results.</p></div>
+        </div>
+      </section>
+
+      <section class="demo-section" id="accessibility" aria-labelledby="accessibility-title">
+        <div class="demo-section__header">
+          <p class="demo-section__eyebrow">Verified behavior</p>
+          <h2 id="accessibility-title">Accessibility behavior</h2>
+        </div>
+        <ul class="demo-check-list">
+          <li>Uses a real button trigger and native links, buttons, and form controls inside the panel.</li>
+          <li>Synchronizes <code>aria-expanded</code>, <code>aria-controls</code>, and the panel’s <code>hidden</code> state.</li>
+          <li>Keeps natural Tab order and does not create a focus trap.</li>
+          <li>Does not add <code>role="menu"</code>, <code>role="menuitem"</code>, or misleading popup semantics.</li>
+          <li>Skips disabled and hidden controls during managed keyboard movement.</li>
+          <li>Restores plugin-owned DOM state and removes listeners on <code>destroy()</code>.</li>
+          <li>Optional filter counts use a persistent polite status region and do not move focus.</li>
+          <li>CSS includes visible focus styles and reduced-motion handling.</li>
+        </ul>
+
+        <h3>Keyboard interaction</h3>
+        <div class="demo-table-wrap" tabindex="0" role="region" aria-label="Keyboard interaction table">
+          <table>
+            <thead><tr><th>Key</th><th>Behavior</th></tr></thead>
+            <tbody>
+              <tr><td><kbd>Enter</kbd> / <kbd>Space</kbd></td><td>Uses native button activation to toggle the disclosure.</td></tr>
+              <tr><td><kbd>Space</kbd> on a checkbox</td><td>Toggles the native checkbox and leaves the disclosure open. <kbd>Enter</kbd> keeps its native non-activation behavior.</td></tr>
+              <tr><td><kbd>ArrowDown</kbd> / <kbd>ArrowUp</kbd></td><td>Opens from the trigger or moves through panel controls.</td></tr>
+              <tr><td><kbd>Home</kbd> / <kbd>End</kbd></td><td>Moves to the first or last enabled control.</td></tr>
+              <tr><td><kbd>Escape</kbd></td><td>Closes and returns focus to the trigger.</td></tr>
+              <tr><td>Printable character</td><td>Moves to the next control whose data, ARIA, native form, or text label starts with the query. Editable controls retain typing.</td></tr>
+              <tr><td><kbd>Tab</kbd> / <kbd>Shift</kbd> + <kbd>Tab</kbd></td><td>Uses natural browser order and closes after focus leaves.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="demo-section" id="styling" aria-labelledby="styling-title">
+        <div class="demo-section__header">
+          <p class="demo-section__eyebrow">CSS API</p>
+          <h2 id="styling-title">Styling and themes</h2>
+          <p>The default stylesheet provides layout, state, focus, and add-on styles. Public variables use the <code>--a11y-menu-button-*</code> prefix.</p>
+        </div>
+        <pre class="demo-code"><code>.product-menu {
+  --a11y-menu-button-panel-min-width: 16rem;
+  --a11y-menu-button-panel-radius: 0.5rem;
+  --a11y-menu-button-panel-bg: #ffffff;
+  --a11y-menu-button-panel-color: #172033;
+}</code></pre>
+        <p>Optional Soft, Compact, Elevated, and Command theme files are exported under <code>a11y-menu-button/styles/themes/</code>. Verify each product theme's foreground, background, interaction, danger, and focus colors.</p>
+        <p>The core stylesheet adds a <code>CanvasText</code> panel border in forced-colors mode because the default shadow may disappear. If a product overrides the panel border, enable a Windows Contrast theme and confirm that the open panel has one clear boundary at every supported placement and that focus indicators remain visible. Complete this manual check before mapping the result to WCAG 1.4.11.</p>
+      </section>
+
+      <section class="demo-section" id="examples" aria-labelledby="examples-title">
+        <div class="demo-section__header">
+          <p class="demo-section__eyebrow">Live pattern gallery</p>
+          <h2 id="examples-title">More patterns</h2>
+          <p>
+            These examples run on this page with the same compiled package as the
+            primary demo. Try native buttons, links, checkboxes, filtering,
+            asynchronous states, and full add-on teardown.
+          </p>
+        </div>
+        <div class="demo-preview">
+          <div class="demo-pattern-grid" aria-label="Additional menu button patterns">
+            <article class="demo-card" id="example-document-actions">
+              <h3>Document actions</h3>
+              <p>Native action buttons; unavailable actions stay out of managed keyboard movement.</p>
+              <div class="a11y-menu-button" data-a11y-menu-button data-placement="bottom-start">
+                <button class="a11y-menu-button__trigger" type="button" aria-expanded="false" aria-controls="pattern-document-panel">Document actions</button>
+                <div class="a11y-menu-button__panel" id="pattern-document-panel" hidden>
+                  <button class="a11y-menu-button__item" type="button" data-menu-close>Rename document</button>
+                  <button class="a11y-menu-button__item" type="button" data-menu-close>Duplicate document</button>
+                  <button class="a11y-menu-button__item" type="button" disabled>Move to archive (unavailable)</button>
+                  <button class="a11y-menu-button__item" type="button" data-menu-close>Download PDF</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="demo-card" id="example-notifications">
+              <h3>Notifications</h3>
+              <p>Descriptive native links with secondary time information.</p>
+              <div class="a11y-menu-button demo-notifications" data-a11y-menu-button data-placement="bottom-start">
+                <button class="a11y-menu-button__trigger" type="button" aria-expanded="false" aria-controls="pattern-notifications-panel" aria-label="Open notifications, 3 unread">Notifications (3)</button>
+                <div class="a11y-menu-button__panel" id="pattern-notifications-panel" hidden>
+                  <a class="a11y-menu-button__item demo-notification" href="#example-notifications" data-menu-close>
+                    <span>Priya mentioned you</span><span>5 minutes ago</span>
+                  </a>
+                  <a class="a11y-menu-button__item demo-notification" href="#example-notifications" data-menu-close>
+                    <span>Build 482 passed</span><span>18 minutes ago</span>
+                  </a>
+                  <a class="a11y-menu-button__item demo-notification" href="#example-notifications" data-menu-close>
+                    <span>New audit comment</span><span>1 hour ago</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <article class="demo-card" id="example-checkboxes">
+              <h3>Checkbox preferences</h3>
+              <p>Click a checkbox or its label, or focus it and press Space. Native checkboxes leave the disclosure open; Enter does not toggle them.</p>
+              <div class="a11y-menu-button demo-checkbox-menu" data-a11y-menu-button data-placement="bottom-start">
+                <button class="a11y-menu-button__trigger" type="button" aria-expanded="false" aria-controls="pattern-preferences-panel">Notification preferences</button>
+                <div class="a11y-menu-button__panel" id="pattern-preferences-panel" hidden>
+                  <fieldset class="demo-menu-options">
+                    <legend>Notify me about</legend>
+                    <label class="demo-menu-option" for="preference-mentions">
+                      <input id="preference-mentions" type="checkbox" name="mentions" checked />
+                      Mentions
+                    </label>
+                    <label class="demo-menu-option" for="preference-project-updates">
+                      <input id="preference-project-updates" type="checkbox" name="project-updates" />
+                      Project updates
+                    </label>
+                    <label class="demo-menu-option" for="preference-weekly-summary">
+                      <input id="preference-weekly-summary" type="checkbox" name="weekly-summary" />
+                      Weekly summary
+                    </label>
+                    <label class="demo-menu-option" for="preference-sms-alerts">
+                      <input id="preference-sms-alerts" type="checkbox" name="sms-alerts" disabled />
+                      SMS alerts (unavailable)
+                    </label>
+                  </fieldset>
+                </div>
+              </div>
+            </article>
+
+            <article class="demo-card" id="example-filter">
+              <h3>Filterable actions</h3>
+              <p>A generated search field filters native buttons and announces settled result counts.</p>
+              <div class="a11y-menu-button" data-a11y-menu-button data-menu-filterable="true" data-placement="bottom-start" data-example-filter>
+                <button class="a11y-menu-button__trigger" type="button" aria-expanded="false" aria-controls="pattern-filter-panel">Find an action</button>
+                <div class="a11y-menu-button__panel" id="pattern-filter-panel" hidden>
+                  <p data-menu-filter-status></p>
+                  <button class="a11y-menu-button__item" type="button" data-menu-close>Archive project</button>
+                  <button class="a11y-menu-button__item" type="button" data-menu-close>Assign owner</button>
+                  <button class="a11y-menu-button__item" type="button" data-menu-close>Duplicate project</button>
+                  <button class="a11y-menu-button__item" type="button" data-menu-close>Move project</button>
+                  <button class="a11y-menu-button__item" type="button" data-menu-close>Share project</button>
+                  <p class="a11y-menu-button__empty" role="status" aria-live="polite" aria-atomic="true" hidden>No matching actions</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="demo-card" id="example-async">
+              <h3>Asynchronous actions</h3>
+              <p>The first local request fails on purpose; Retry then loads current actions.</p>
+              <div class="a11y-menu-button" data-a11y-menu-button data-placement="bottom-start" data-example-async>
+                <button class="a11y-menu-button__trigger" type="button" aria-expanded="false" aria-controls="pattern-async-panel">Load actions</button>
+                <div class="a11y-menu-button__panel" id="pattern-async-panel" hidden>
+                  <button class="demo-panel-action" type="button" data-menu-retry hidden>Retry loading actions</button>
+                  <div data-menu-actions></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="demo-card" id="example-cleanup">
+              <h3>Add-on lifecycle</h3>
+              <p>Destroy generated add-on UI in reverse order, then safely initialize the same markup again.</p>
+              <div class="demo-pattern-controls" aria-label="Lifecycle controls">
+                <button class="demo-control" type="button" data-example-mount>Initialize</button>
+                <button class="demo-control" type="button" data-example-destroy>Destroy</button>
+              </div>
+              <div class="a11y-menu-button" data-a11y-menu-button data-menu-filterable="true" data-menu-hints="true" data-placement="top-start" data-example-lifecycle>
+                <button class="a11y-menu-button__trigger" type="button" aria-expanded="false" aria-controls="pattern-lifecycle-panel">Lifecycle demo</button>
+                <div class="a11y-menu-button__panel" id="pattern-lifecycle-panel" hidden>
+                  <button class="a11y-menu-button__item" type="button" data-menu-close>Archive project</button>
+                  <button class="a11y-menu-button__item" type="button" data-menu-close>Duplicate project</button>
+                  <button class="a11y-menu-button__item" type="button" data-menu-close>Move project</button>
+                </div>
+              </div>
+              <p class="demo-pattern-status" role="status" aria-live="polite" data-example-lifecycle-status></p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="demo-section" id="limitations" aria-labelledby="limitations-title">
+        <div class="demo-section__header">
+          <p class="demo-section__eyebrow">Know the boundary</p>
+          <h2 id="limitations-title">Limitations</h2>
+        </div>
+        <ul>
+          <li>The plugin does not create application markup or choose action labels.</li>
+          <li>It is intended for flat disclosure panels, not nested or mega menus.</li>
+          <li>It deliberately does not implement ARIA application-menu roles or a focus trap.</li>
+          <li>Positioning supports four placements and vertical flipping, not collision-aware portals.</li>
+          <li><code>aria-disabled</code> communicates state but does not suppress link navigation or application handlers.</li>
+          <li>Add-on controllers must be destroyed before the independently created core instance.</li>
+          <li>The async-state add-on reports caller-supplied state; applications own requests, cancellation, stale-response protection, rendering, and retry controls.</li>
+          <li>Optional live announcements still require manual verification with the consuming product's supported screen readers and browsers.</li>
+          <li>Screen reader results still depend on correct host markup and testing in the target product.</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="demo-footer" data-demo-footer>
+      <div class="demo-footer__inner demo-page">
+        <div class="demo-footer__brand">
+          <p class="demo-footer__eyebrow">Accessibility plugin demo</p>
+          <p class="demo-footer__credit">
+            <span class="demo-footer__plugin">A11y Menu Button</span>
+            <span class="demo-footer__separator" aria-hidden="true">&middot;</span>
+            Built by
+            <a class="demo-footer__link" href="https://github.com/vmitsaras/">Vasileios Mitsaras</a>
+            <span class="demo-footer__separator" aria-hidden="true">&middot;</span>
+            <a class="demo-footer__link" href="https://linkedin.com/in/vasilis-mitsaras">LinkedIn profile</a>
+          </p>
+          <p class="demo-footer__meta">
+            <span>a11y-menu-button</span>
+            <span class="demo-footer__separator" aria-hidden="true">&middot;</span>
+            <span>MIT License</span>
+          </p>
+        </div>
+
+        <nav class="demo-footer__nav" aria-label="Project links">
+          <ul class="demo-footer__links">
+            <li class="demo-footer__item">
+              <a class="demo-footer__link" href="https://github.com/vmitsaras/A11y-Menu-Button">GitHub repository</a>
+            </li>
+            <li class="demo-footer__item">
+              <a class="demo-footer__link" href="https://vmitsaras.github.io/A11y-Menu-Button/">Documentation</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </footer>
+
+    <script type="module">
+      import {
+        MENU_BUTTON_EVENTS,
+        attachMenuHints,
+        createMenuButton,
+        enhanceAsyncMenuState,
+        enhanceFilterableMenu,
+        initMenuButtons,
+      } from './dist/index.js';
+
+      const demoMenus = initMenuButtons();
+      const demoAddons = [];
+
+      const filterRoot = document.querySelector('[data-example-filter]');
+      if (filterRoot instanceof HTMLElement) {
+        const filter = enhanceFilterableMenu(filterRoot, {
+          announceResultCount: true,
+          emptyMessage: 'No matching actions',
+          formatResultCount: ({ count }) =>
+            count === 1 ? '1 action available' : `${count} actions available`,
+        });
+        if (filter) demoAddons.push(filter);
+      }
+
+      const asyncRoot = document.querySelector('[data-example-async]');
+      const retryButton = asyncRoot?.querySelector('[data-menu-retry]');
+      const actions = asyncRoot?.querySelector('[data-menu-actions]');
+      const asyncMenu = asyncRoot instanceof HTMLElement
+        ? createMenuButton(asyncRoot)
+        : null;
+      const asyncState = asyncRoot instanceof HTMLElement
+        ? enhanceAsyncMenuState(asyncRoot)
+        : null;
+      let activeRequest = null;
+      let requestVersion = 0;
+      let asyncAttempt = 0;
+      let asyncStarted = false;
+
+      function simulateActionsRequest({ signal, shouldFail }) {
+        return new Promise((resolve, reject) => {
+          const timer = window.setTimeout(() => {
+            if (shouldFail) reject(new Error('Simulated request failure'));
+            else resolve(['Archive project', 'Duplicate project', 'Move project']);
+          }, 700);
+          signal.addEventListener('abort', () => {
+            window.clearTimeout(timer);
+            reject(new DOMException('Request aborted', 'AbortError'));
+          }, { once: true });
+        });
+      }
+
+      async function loadActions() {
+        if (!asyncState) return;
+        const version = ++requestVersion;
+        activeRequest?.abort();
+        const request = new AbortController();
+        activeRequest = request;
+        asyncAttempt += 1;
+        const retryHadFocus = document.activeElement === retryButton;
+
+        if (retryButton instanceof HTMLButtonElement) {
+          retryButton.hidden = !retryHadFocus;
+          retryButton.setAttribute('aria-disabled', 'true');
+        }
+        asyncState.setLoading(true, { message: 'Loading actions…' });
+
+        try {
+          const labels = await simulateActionsRequest({
+            signal: request.signal,
+            shouldFail: asyncAttempt === 1,
+          });
+          if (
+            request.signal.aborted ||
+            version !== requestVersion ||
+            !(actions instanceof HTMLElement)
+          ) return;
+
+          const items = labels.map((label) => {
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'a11y-menu-button__item';
+            button.dataset.menuClose = '';
+            button.textContent = label;
+            return button;
+          });
+          actions.replaceChildren(...items);
+          asyncState.setReady();
+          if (retryHadFocus && asyncMenu?.isOpen()) {
+            (items[0] ?? asyncMenu.trigger).focus();
+          }
+          if (retryButton instanceof HTMLButtonElement) {
+            retryButton.hidden = true;
+            retryButton.removeAttribute('aria-disabled');
+          }
+        } catch (error) {
+          if (
+            request.signal.aborted ||
+            version !== requestVersion ||
+            (error instanceof DOMException && error.name === 'AbortError')
+          ) return;
+
+          asyncState.setError({ message: 'Actions could not be loaded.' });
+          if (retryButton instanceof HTMLButtonElement) {
+            retryButton.hidden = false;
+            retryButton.removeAttribute('aria-disabled');
+          }
+        } finally {
+          if (activeRequest === request) activeRequest = null;
+        }
+      }
+
+      asyncRoot?.addEventListener(MENU_BUTTON_EVENTS.open, () => {
+        if (asyncStarted) return;
+        asyncStarted = true;
+        void loadActions();
+      });
+      retryButton?.addEventListener('click', () => {
+        if (retryButton.getAttribute('aria-disabled') === 'true') return;
+        void loadActions();
+      });
+
+      const lifecycleRoot = document.querySelector('[data-example-lifecycle]');
+      const mountButton = document.querySelector('[data-example-mount]');
+      const destroyButton = document.querySelector('[data-example-destroy]');
+      const lifecycleStatus = document.querySelector('[data-example-lifecycle-status]');
+      let lifecycleControllers = null;
+
+      function updateLifecycleControls(message) {
+        if (mountButton instanceof HTMLButtonElement) {
+          mountButton.disabled = lifecycleControllers !== null;
+        }
+        if (destroyButton instanceof HTMLButtonElement) {
+          destroyButton.disabled = lifecycleControllers === null;
+        }
+        if (lifecycleStatus instanceof HTMLElement) {
+          lifecycleStatus.textContent = message;
+        }
+      }
+
+      function initializeLifecycleDemo() {
+        if (!(lifecycleRoot instanceof HTMLElement) || lifecycleControllers) return;
+        const menu = createMenuButton(lifecycleRoot);
+        const filter = enhanceFilterableMenu(lifecycleRoot);
+        const hints = attachMenuHints(lifecycleRoot, { timeout: 0 });
+        lifecycleControllers = { menu, filter, hints };
+        updateLifecycleControls('Core, filter, and hints initialized.');
+      }
+
+      function destroyLifecycleDemo() {
+        if (!lifecycleControllers) return;
+        lifecycleControllers.hints?.destroy();
+        lifecycleControllers.filter?.destroy();
+        lifecycleControllers.menu.destroy();
+        lifecycleControllers = null;
+        updateLifecycleControls('Hints, filter, and core destroyed in reverse order.');
+      }
+
+      mountButton?.addEventListener('click', initializeLifecycleDemo);
+      destroyButton?.addEventListener('click', destroyLifecycleDemo);
+      initializeLifecycleDemo();
+
+      window.addEventListener('beforeunload', () => activeRequest?.abort(), { once: true });
+      window.__demoMenus = demoMenus;
+      window.__demoAddons = demoAddons;
+    </script>
+  </body>
+</html>

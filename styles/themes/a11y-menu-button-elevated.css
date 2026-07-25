@@ -1,0 +1,17 @@
+/* Optional elevated theme for a11y-menu-button.
+   Load after styles/a11y-menu-button.css. Only public CSS variables are changed. */
+
+.a11y-menu-button {
+  --a11y-menu-button-panel-min-width: 14rem;
+  --a11y-menu-button-panel-offset: 0.625rem;
+  --a11y-menu-button-panel-radius: 0.875rem;
+  --a11y-menu-button-panel-padding: 0.5rem;
+  --a11y-menu-button-panel-shadow: 0 1.25rem 3rem rgb(15 23 42 / 0.24), 0 0 0 1px rgb(15 23 42 / 0.08);
+  --a11y-menu-button-panel-bg: #ffffff;
+  --a11y-menu-button-panel-color: #111827;
+  --a11y-menu-button-item-hover-bg: #eef2ff;
+  --a11y-menu-button-item-active-bg: #e0e7ff;
+  --a11y-menu-button-item-gap: 0.1875rem;
+  --a11y-menu-button-item-danger-color: #b42318;
+  --a11y-menu-button-error-color: #b42318;
+}

@@ -1,0 +1,17 @@
+/* Optional command-style theme for a11y-menu-button.
+   Load after styles/a11y-menu-button.css. Only public CSS variables are changed. */
+
+.a11y-menu-button {
+  --a11y-menu-button-panel-min-width: 18rem;
+  --a11y-menu-button-panel-offset: 0.5rem;
+  --a11y-menu-button-panel-radius: 0.75rem;
+  --a11y-menu-button-panel-padding: 0.5rem;
+  --a11y-menu-button-panel-shadow: 0 1.5rem 3rem rgb(2 6 23 / 0.35);
+  --a11y-menu-button-panel-bg: #111827;
+  --a11y-menu-button-panel-color: #f9fafb;
+  --a11y-menu-button-item-hover-bg: #374151;
+  --a11y-menu-button-item-active-bg: #4b5563;
+  --a11y-menu-button-item-gap: 0.25rem;
+  --a11y-menu-button-item-danger-color: #fca5a5;
+  --a11y-menu-button-error-color: #fca5a5;
+}

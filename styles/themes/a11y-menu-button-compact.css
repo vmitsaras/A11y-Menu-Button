@@ -1,0 +1,17 @@
+/* Optional compact theme for a11y-menu-button.
+   Load after styles/a11y-menu-button.css. Only public CSS variables are changed. */
+
+.a11y-menu-button {
+  --a11y-menu-button-panel-min-width: 10rem;
+  --a11y-menu-button-panel-offset: 0.25rem;
+  --a11y-menu-button-panel-radius: 0.5rem;
+  --a11y-menu-button-panel-padding: 0.25rem;
+  --a11y-menu-button-panel-shadow: 0 0.5rem 1rem rgb(15 23 42 / 0.12);
+  --a11y-menu-button-panel-bg: Canvas;
+  --a11y-menu-button-panel-color: CanvasText;
+  --a11y-menu-button-item-hover-bg: color-mix(in srgb, currentColor 10%, transparent);
+  --a11y-menu-button-item-active-bg: color-mix(in srgb, currentColor 16%, transparent);
+  --a11y-menu-button-item-gap: 0.0625rem;
+  --a11y-menu-button-item-danger-color: #b42318;
+  --a11y-menu-button-error-color: #b42318;
+}

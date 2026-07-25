@@ -1,0 +1,17 @@
+/* Optional soft theme for a11y-menu-button.
+   Load after styles/a11y-menu-button.css. Only public CSS variables are changed. */
+
+.a11y-menu-button {
+  --a11y-menu-button-panel-min-width: 13rem;
+  --a11y-menu-button-panel-offset: 0.5rem;
+  --a11y-menu-button-panel-radius: 1rem;
+  --a11y-menu-button-panel-padding: 0.5rem;
+  --a11y-menu-button-panel-shadow: 0 1rem 2.5rem rgb(15 23 42 / 0.14);
+  --a11y-menu-button-panel-bg: #f8fafc;
+  --a11y-menu-button-panel-color: #0f172a;
+  --a11y-menu-button-item-hover-bg: #e0f2fe;
+  --a11y-menu-button-item-active-bg: #bae6fd;
+  --a11y-menu-button-item-gap: 0.25rem;
+  --a11y-menu-button-item-danger-color: #b42318;
+  --a11y-menu-button-error-color: #b42318;
+}

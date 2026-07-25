@@ -1,0 +1,429 @@
+/* ==========================================================================
+   A11y Menu Button — Styles
+   ========================================================================== */
+
+/* ── Public API variables ─────────────────────────────────────────────── */
+
+.a11y-menu-button {
+  --a11y-menu-button-panel-min-width: 12rem;
+  --a11y-menu-button-panel-offset: 0.5rem;
+  --a11y-menu-button-panel-radius: 0.75rem;
+  --a11y-menu-button-panel-padding: 0.375rem;
+  --a11y-menu-button-panel-shadow: 0 1rem 2rem rgb(0 0 0 / 0.16);
+  --a11y-menu-button-panel-bg: Canvas;
+  --a11y-menu-button-panel-color: CanvasText;
+  --a11y-menu-button-item-hover-bg: color-mix(in srgb, currentColor 8%, transparent);
+  --a11y-menu-button-item-active-bg: color-mix(in srgb, currentColor 12%, transparent);
+  --a11y-menu-button-item-gap: 0.125rem;
+
+  /* ── Private implementation variables ──────────────────────────────── */
+
+  --_panel-min-width: var(--a11y-menu-button-panel-min-width);
+  --_panel-offset: var(--a11y-menu-button-panel-offset);
+  --_panel-radius: var(--a11y-menu-button-panel-radius);
+  --_panel-padding: var(--a11y-menu-button-panel-padding);
+  --_panel-shadow: var(--a11y-menu-button-panel-shadow);
+  --_panel-max-height: none;
+  --_trigger-width: auto;
+
+  position: relative;
+  display: inline-block;
+  isolation: isolate;
+}
+
+/* ── Panel ────────────────────────────────────────────────────────────── */
+
+.a11y-menu-button__panel {
+  position: absolute;
+  z-index: 10;
+  min-inline-size: var(--_panel-min-width);
+  /* prevent the panel from overflowing the viewport horizontally */
+  max-inline-size: calc(100vw - (var(--_panel-offset) * 2));
+  max-block-size: var(--_panel-max-height);
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: var(--_panel-padding);
+  background: var(--a11y-menu-button-panel-bg);
+  color: var(--a11y-menu-button-panel-color);
+  border-radius: var(--_panel-radius);
+  box-shadow: var(--_panel-shadow);
+  box-sizing: border-box;
+  overscroll-behavior: contain;
+}
+
+.a11y-menu-button__panel[hidden] {
+  display: none;
+}
+
+/* ── Bottom placement ─────────────────────────────────────────────────── */
+
+.a11y-menu-button[data-placement="bottom-start"] .a11y-menu-button__panel {
+  inset-block-start: calc(100% + var(--_panel-offset));
+  inset-inline-start: 0;
+}
+
+.a11y-menu-button[data-placement="bottom-end"] .a11y-menu-button__panel {
+  inset-block-start: calc(100% + var(--_panel-offset));
+  inset-inline-end: 0;
+}
+
+/* ── Top placement ────────────────────────────────────────────────────── */
+
+.a11y-menu-button[data-placement="top-start"] .a11y-menu-button__panel {
+  inset-block-end: calc(100% + var(--_panel-offset));
+  inset-inline-start: 0;
+}
+
+.a11y-menu-button[data-placement="top-end"] .a11y-menu-button__panel {
+  inset-block-end: calc(100% + var(--_panel-offset));
+  inset-inline-end: 0;
+}
+
+/* ── Match trigger width ──────────────────────────────────────────────── */
+
+.a11y-menu-button[data-match-width="true"] .a11y-menu-button__panel {
+  /* when matching trigger width, make the panel exactly the same
+     width (uses the trigger's offsetWidth set as --_trigger-width) */
+  inline-size: var(--_trigger-width);
+  min-inline-size: var(--_trigger-width);
+  max-inline-size: var(--_trigger-width);
+}
+
+/* ── Items ────────────────────────────────────────────────────────────── */
+
+.a11y-menu-button__item {
+  display: flex;
+  inline-size: 100%;
+  min-block-size: 2.5rem;
+  align-items: center;
+  gap: var(--a11y-menu-button-item-gap);
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.a11y-menu-button__item[hidden] {
+  display: none;
+}
+
+
+/* ── Rich item add-on ─────────────────────────────────────────────────── */
+
+.a11y-menu-button__item--rich {
+  gap: 0.75rem;
+  justify-content: flex-start;
+  text-align: start;
+}
+
+.a11y-menu-button__item-icon {
+  flex: 0 0 auto;
+  inline-size: 1.25em;
+  text-align: center;
+}
+
+.a11y-menu-button__item-content {
+  display: grid;
+  flex: 1 1 auto;
+  min-inline-size: 0;
+  gap: 0.125rem;
+}
+
+.a11y-menu-button__item-label,
+.a11y-menu-button__item-description {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.a11y-menu-button__item-description,
+.a11y-menu-button__item-shortcut {
+  font-size: 0.875em;
+  opacity: 0.72;
+}
+
+.a11y-menu-button__item-shortcut {
+  flex: 0 0 auto;
+  margin-inline-start: 1rem;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+}
+
+.a11y-menu-button__item--danger {
+  color: var(--a11y-menu-button-item-danger-color, #b42318);
+}
+
+
+/* ── Filterable menu add-on ───────────────────────────────────────────── */
+
+.a11y-menu-button__filter {
+  padding-block-end: var(--a11y-menu-button-item-gap);
+}
+
+.a11y-menu-button__filter-input {
+  display: block;
+  inline-size: 100%;
+  box-sizing: border-box;
+  min-block-size: 2.25rem;
+  padding: 0.375rem 0.5rem;
+  border: 1px solid color-mix(in srgb, currentColor 24%, transparent);
+  border-radius: calc(var(--_panel-radius) * 0.6);
+  background: Canvas;
+  color: CanvasText;
+  font: inherit;
+}
+
+.a11y-menu-button__filter-input:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.a11y-menu-button__empty {
+  padding: 0.625rem 0.5rem;
+  color: currentColor;
+  opacity: 0.72;
+  font-size: 0.875rem;
+}
+
+.a11y-menu-button__empty[hidden] {
+  display: none;
+}
+
+.a11y-menu-button__filter-status,
+.a11y-menu-button [data-menu-filter-status] {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  border: 0;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+
+/* ── Menu hints add-on ───────────────────────────────────────────────── */
+
+.a11y-menu-button__hint {
+  margin-block-end: var(--a11y-menu-button-item-gap);
+  padding: 0.5rem 0.625rem;
+  border-radius: calc(var(--_panel-radius) * 0.6);
+  background: color-mix(in srgb, currentColor 8%, transparent);
+  color: currentColor;
+  font-size: 0.8125rem;
+  line-height: 1.35;
+  opacity: 0;
+  transition: opacity 140ms ease;
+}
+
+.a11y-menu-button__hint[hidden] {
+  display: none;
+}
+
+.a11y-menu-button__hint ul {
+  display: grid;
+  gap: 0.125rem;
+  margin: 0;
+  padding-inline-start: 1.1em;
+}
+
+.a11y-menu-button__hint--visible {
+  opacity: 0.82;
+}
+
+/* ── Feedback add-on ─────────────────────────────────────────────────── */
+
+.a11y-menu-button__feedback {
+  position: absolute;
+  z-index: 20;
+  inset-block-start: calc(100% + var(--_panel-offset));
+  inset-inline-start: 50%;
+  max-inline-size: min(18rem, calc(100vw - 2rem));
+  padding: 0.375rem 0.625rem;
+  border-radius: 999px;
+  background: CanvasText;
+  color: Canvas;
+  box-shadow: var(--_panel-shadow);
+  font-size: 0.875rem;
+  line-height: 1.3;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 0.25rem);
+  transition:
+    opacity 140ms ease,
+    transform 140ms ease;
+}
+
+.a11y-menu-button__feedback:empty {
+  display: none;
+}
+
+.a11y-menu-button__feedback--visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* ── Async menu state add-on ─────────────────────────────────────────── */
+
+.a11y-menu-button__async-state {
+  display: grid;
+  gap: 0.5rem;
+  min-inline-size: 12rem;
+  padding: 0.625rem 0.5rem;
+  color: currentColor;
+}
+
+.a11y-menu-button__async-state[hidden] {
+  display: none;
+}
+
+.a11y-menu-button__async-message {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.35;
+  opacity: 0.78;
+}
+
+.a11y-menu-button__async-state[data-menu-async-state="error"] .a11y-menu-button__async-message {
+  color: var(--a11y-menu-button-error-color, #b42318);
+  opacity: 1;
+}
+
+.a11y-menu-button__async-state:not([data-menu-async-state="loading"]) .a11y-menu-button__async-skeleton {
+  display: none;
+}
+
+.a11y-menu-button__async-skeleton {
+  display: grid;
+  gap: var(--a11y-menu-button-item-gap);
+}
+
+.a11y-menu-button__async-skeleton-item {
+  display: block;
+  block-size: 2.25rem;
+  border-radius: calc(var(--_panel-radius) * 0.5);
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, currentColor 10%, transparent),
+    color-mix(in srgb, currentColor 18%, transparent),
+    color-mix(in srgb, currentColor 10%, transparent)
+  );
+  background-size: 200% 100%;
+  animation: a11y-menu-button-skeleton 1.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .a11y-menu-button__async-skeleton-item {
+    animation: none;
+  }
+}
+
+@keyframes a11y-menu-button-skeleton {
+  from {
+    background-position: 100% 0;
+  }
+
+  to {
+    background-position: -100% 0;
+  }
+}
+
+
+/* ── Recent actions add-on ───────────────────────────────────────────── */
+
+.a11y-menu-button__recent {
+  display: grid;
+  gap: var(--a11y-menu-button-item-gap);
+  padding-block-end: var(--a11y-menu-button-item-gap);
+}
+
+.a11y-menu-button__recent-heading {
+  padding: 0.375rem 0.5rem 0.125rem;
+  color: currentColor;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  opacity: 0.72;
+  text-transform: uppercase;
+}
+
+.a11y-menu-button__recent-list {
+  display: grid;
+  gap: var(--a11y-menu-button-item-gap);
+}
+
+.a11y-menu-button__recent-separator {
+  margin-block-start: var(--a11y-menu-button-item-gap);
+}
+
+/* ── Separator ────────────────────────────────────────────────────────── */
+
+.a11y-menu-button__separator {
+  block-size: 1px;
+  margin-block: var(--a11y-menu-button-item-gap);
+  border: none;
+  background-color: currentColor;
+  opacity: 0.15;
+}
+
+/* ── Focus ────────────────────────────────────────────────────────────── */
+
+.a11y-menu-button__item:hover {
+  background: var(--a11y-menu-button-item-hover-bg);
+}
+
+.a11y-menu-button__item:active {
+  background: var(--a11y-menu-button-item-active-bg);
+}
+
+.a11y-menu-button__item[aria-disabled="true"],
+.a11y-menu-button__item:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.a11y-menu-button__trigger:focus-visible,
+.a11y-menu-button__item:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* ── State modifier ───────────────────────────────────────────────────── */
+
+/* BEM modifier kept for CSS-only consumers; JS adds `is-open` on root */
+/* panel visibility is driven by the `hidden` attribute;
+     these classes are available as CSS hooks 
+.a11y-menu-button--open .a11y-menu-button__panel,
+.a11y-menu-button.is-open .a11y-menu-button__panel {}
+*/
+
+/* ── Placement modifier classes ───────────────────────────────────────── */
+
+.a11y-menu-button--top .a11y-menu-button__panel {
+  inset-block-end: calc(100% + var(--_panel-offset));
+  inset-block-start: auto;
+}
+
+.a11y-menu-button--end .a11y-menu-button__panel {
+  inset-inline-end: 0;
+  inset-inline-start: auto;
+}
+
+/* ── Reduced motion ───────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .a11y-menu-button *,
+  .a11y-menu-button *::before,
+  .a11y-menu-button *::after {
+    animation-duration: 0.001ms;
+    animation-iteration-count: 1;
+    scroll-behavior: auto;
+    transition-duration: 0.001ms;
+  }
+}
+
+/* ── Forced colors ─────────────────────────────────────────── */
+
+@media (forced-colors: active) {
+  .a11y-menu-button__panel {
+    border: 1px solid CanvasText;
+  }
+}

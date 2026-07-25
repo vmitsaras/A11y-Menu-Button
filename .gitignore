@@ -49,6 +49,8 @@ web_modules/
 
 # Optional npm cache directory
 .npm
+.npm-cache/
+.playwright-cli/
 
 # Optional eslint cache
 .eslintcache
@@ -80,7 +82,7 @@ out
 
 # Nuxt.js build / generate output
 .nuxt
-dist
+/dist/
 .output
 
 # Gatsby files

@@ -1,21 +1,22 @@
 # QA release audit
 
-Audit date: 2026-07-25
+Audit date: 2026-07-26
 
 ## Verdict
 
-**Hold the first public release.** The local source, package, documentation, and
-Chromium checks are green, and no unresolved Blocker or High defect was found
-in the exercised paths. Release remains blocked by evidence and repository
-governance gaps:
+**Ready for the first public release after the final automated gates pass.**
+The intended source and generated documentation are committed on `main`, the
+package version is `1.0.0`, the consumed Changesets are represented in the
+changelog, and a verification-only CI workflow covers install, test, typecheck,
+build, package contents, and generated-documentation drift.
 
-- almost the entire intended release is still untracked on `main`;
-- no committed CI workflow or automated real-browser suite exists;
-- Firefox, Safari, assistive technology, forced-colors, zoom/text resize, and
-  reduced-motion checks have not been run on their actual target platforms.
-
-No publish, release, push, tag, merge, upload, or visual-baseline operation was
-performed.
+No unresolved Blocker or High implementation defect was found in the exercised
+paths. Firefox, Safari, assistive-technology, forced-colors, zoom/text-resize,
+reduced-motion, and expanded real-browser geometry checks remain unperformed
+manual validation. They are recorded below as evidence gaps rather than
+silently inferred results. The README limits the support claim accordingly,
+makes no blanket WCAG or screen-reader compatibility claim, and asks consumers
+to test their final markup and supported browser/assistive-technology matrix.
 
 ## Implemented audit findings
 
@@ -45,7 +46,7 @@ performed.
 | `npm run typecheck` | Pass |
 | `npm run build` | Pass; package and generated Pages output rebuilt |
 | `npm run pack:check` | Pass |
-| Changesets status | Valid minor release for `a11y-menu-button` |
+| Changesets status | No pending Changesets; consumed notes are included in the `1.0.0` changelog |
 | Lockfile dependency view | Five declared development dependencies; no runtime dependencies |
 | Package self-imports | Root, core, docs, and all seven add-on subpaths import successfully |
 | Packed consumer JavaScript | Pass from an isolated temporary install |
@@ -67,9 +68,10 @@ approved `npm ci` can normalize the local development tree.
 | Filter add-on subpath | 12,714 B | 4,011 B |
 | Default CSS | 12,968 B | 2,522 B |
 
-The dry-run tarball contains 56 files, is 68,265 B compressed, and is 294,218 B
-unpacked. The increase from the earlier 18-file baseline is explained by the
-new explicit JavaScript/type entry points and their code-split chunks/maps.
+The final dry-run tarball contains 56 files, is approximately 68.5 kB
+compressed, and is approximately 295.1 kB unpacked. The increase from the
+earlier 18-file baseline is explained by the new explicit JavaScript/type entry
+points, their code-split chunks/maps, and the completed `1.0.0` changelog.
 Package contents remain limited to `dist`, README, changelog, license, and
 package metadata.
 
@@ -134,12 +136,13 @@ export was removed or changed.
 | P1 | Async stale responses, abort, DOM removal, retry focus | Application-owned recipe plus Chromium demo recovery | Consumer integration/browser automation |
 | P2 | Malformed markup and unsafe trigger/panel replacement | Vitest rejection coverage | Consumer error-message review |
 
-## Manual release checklist
+## Release checklist and remaining validation
 
-- [ ] Confirm the exact source/generated/release file boundary and commit the
+- [x] Confirm the exact source/generated/release file boundary and commit the
       intended repository state. `docs/` is documented as generated,
       committed GitHub Pages output; `dist/` remains ignored package output.
-- [ ] Approve and add CI for test, typecheck, build, and pack verification.
+- [x] Add CI for clean install, test, typecheck, build, pack verification, and
+      generated-documentation drift.
 - [ ] Run the complete keyboard table in current Chromium, Firefox, and Safari,
       including rapid pointer-to-keyboard transitions and application listeners
       that move focus.
@@ -149,15 +152,15 @@ export was removed or changed.
       labels, scrolling, and all four placements at each viewport edge.
 - [ ] Test all themes with visible focus, forced colors, and reduced motion on
       their actual platforms.
-- [ ] Decide whether screenshot baselines should be introduced. None currently
-      exist, so no baseline was updated.
-- [ ] Re-run `npm run test`, `npm run typecheck`, `npm run build`, and
-      `npm run pack:check` after the manual evidence or any approved changes.
+- [x] Keep screenshot baselines out of the initial release. None currently
+      exist, and the current release does not claim visual-regression coverage.
+- [x] Re-run `npm run test`, `npm run typecheck`, `npm run build`, and
+      `npm run pack:check` on 2026-07-26 after the release-preparation changes.
 
 ## Compatibility basis
 
 The package targets ES2022 and documents Baseline Widely Available web-platform
 features as its compatibility policy. `IntersectionObserver` is feature
 detected. The stylesheet contains reduced-motion and forced-colors fallbacks.
-This is a target policy, not proof that the pending browser/assistive-technology
-matrix passed.
+This is a target policy, not proof that the remaining
+browser/assistive-technology matrix passed.

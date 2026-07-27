@@ -701,6 +701,49 @@ describe('A11yMenuButton', () => {
 });
 
 describe('add-ons', () => {
+  it('keeps core keyboard navigation across disabled and classless controls with filtering enabled', () => {
+    const root = renderMenu('data-menu-filterable="true"');
+    const instance = createMenuButton(root, { observeVisibility: false });
+    const controller = enhanceFilterableMenu(root);
+    if (!controller) throw new Error('Filter controller missing');
+
+    const items = Array.from(
+      instance.panel.querySelectorAll<HTMLButtonElement>('.a11y-menu-button__item'),
+    );
+    const disabled = items[2];
+    if (!disabled) throw new Error('Disabled item missing');
+    disabled.removeAttribute('aria-disabled');
+    disabled.disabled = true;
+
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.setAttribute('aria-label', 'Compact project view');
+    instance.panel.append(checkbox);
+
+    [controller.input, checkbox].forEach((control) => {
+      Object.defineProperty(control, 'offsetParent', {
+        configurable: true,
+        get: () => document.body,
+      });
+    });
+
+    instance.open();
+    controller.input.focus();
+
+    keyboard(controller.input, 'ArrowDown');
+    expect(document.activeElement).toBe(items[0]);
+    keyboard(items[0] as HTMLElement, 'ArrowDown');
+    expect(document.activeElement).toBe(items[1]);
+    keyboard(items[1] as HTMLElement, 'ArrowDown');
+    expect(document.activeElement).toBe(checkbox);
+    keyboard(checkbox, 'ArrowDown');
+    expect(document.activeElement).toBe(controller.input);
+    keyboard(controller.input, 'End');
+    expect(document.activeElement).toBe(checkbox);
+    keyboard(checkbox, 'Home');
+    expect(document.activeElement).toBe(controller.input);
+  });
+
   it('filters items, emits state, and restores hidden values', () => {
     const root = renderMenu('data-menu-filterable="true"');
     const controller = enhanceFilterableMenu(root);

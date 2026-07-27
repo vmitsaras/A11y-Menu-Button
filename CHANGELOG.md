@@ -2,6 +2,14 @@
 
 This package uses Changesets for release notes.
 
+## 1.0.1 — 2026-07-27
+
+### Patch Changes
+
+- Fix filterable-menu Arrow, Home, and End navigation so the core keyboard
+  handler skips disabled controls and reaches native controls such as checkboxes.
+- Correct the README's npm publication status and installation wording.
+
 ## 1.0.0 — 2026-07-26
 
 Initial public release.

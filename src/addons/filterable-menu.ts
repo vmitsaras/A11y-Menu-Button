@@ -97,10 +97,6 @@ function visibleItems(panel: HTMLElement): HTMLElement[] {
   );
 }
 
-function focusItem(items: HTMLElement[], position: 'first' | 'last'): void {
-  (position === 'last' ? items.at(-1) : items[0])?.focus();
-}
-
 export function enhanceFilterableMenu(
   root: HTMLElement,
   options: FilterableMenuOptions = {},
@@ -296,39 +292,6 @@ export function enhanceFilterableMenu(
     });
   };
 
-  const onKeydown = (event: KeyboardEvent): void => {
-    if (event.altKey || event.ctrlKey || event.metaKey) return;
-    const current =
-      event.target instanceof Element
-        ? event.target.closest(ITEM_SELECTOR)
-        : null;
-    if (event.target === input && (event.key === 'ArrowDown' || event.key === 'ArrowUp')) {
-      event.preventDefault();
-      event.stopPropagation();
-      focusItem(visibleItems(panel), event.key === 'ArrowUp' ? 'last' : 'first');
-      return;
-    }
-    if (!(current instanceof HTMLElement) || !panel.contains(current)) return;
-    const items = visibleItems(panel);
-    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
-      event.preventDefault();
-      event.stopPropagation();
-      const direction = event.key === 'ArrowDown' ? 1 : -1;
-      const currentIndex = items.indexOf(current);
-      const next =
-        currentIndex === -1
-          ? direction > 0
-            ? 0
-            : items.length - 1
-          : (currentIndex + direction + items.length) % items.length;
-      items[next]?.focus();
-    } else if (event.key === 'Home' || event.key === 'End') {
-      event.preventDefault();
-      event.stopPropagation();
-      focusItem(items, event.key === 'End' ? 'last' : 'first');
-    }
-  };
-
   controller = {
     input,
     emptyState: empty,
@@ -340,7 +303,6 @@ export function enhanceFilterableMenu(
       destroyed = true;
       clearPendingResultAnnouncement();
       input.removeEventListener('input', onInput);
-      panel.removeEventListener('keydown', onKeydown, true);
       originalHidden.forEach((hidden, item) => {
         item.hidden = hidden;
       });
@@ -368,7 +330,6 @@ export function enhanceFilterableMenu(
     },
   };
   input.addEventListener('input', onInput);
-  panel.addEventListener('keydown', onKeydown, true);
   controllers.set(root, controller);
   filter();
   return controller;

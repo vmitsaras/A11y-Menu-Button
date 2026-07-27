@@ -5,12 +5,11 @@ short collections of native links, buttons, and form controls. It provides open/
 placement, keyboard movement, typeahead, lifecycle events, optional add-ons,
 and complete cleanup without turning the panel into an ARIA application menu.
 
-The package is prepared for npm publishing but this repository does not claim
-that it is currently published.
+The package is published on npm and maintained from this repository.
 
 ## Installation
 
-After publication:
+Install from npm:
 
 ```bash
 npm install a11y-menu-button
